@@ -30,7 +30,7 @@
             }
         }
         .carousel {
-            width: 80%;
+            width: 90%;
             height: 80vh;
             overflow: hidden;
             position: relative;
@@ -119,6 +119,44 @@
         .section:nth-child(5) i {
             color: #ff416c;
         }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .carousel {
+                width: 95%;
+                height: 90vh;
+            }
+            .section {
+                padding: 1rem;
+            }
+            .section i {
+                font-size: 2rem;
+            }
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            .section p {
+                font-size: 0.875rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel {
+                height: 95vh;
+            }
+            .section {
+                padding: 0.5rem;
+            }
+            .section i {
+                font-size: 1.5rem;
+            }
+            .section h2 {
+                font-size: 1.25rem;
+            }
+            .section p {
+                font-size: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -193,7 +231,23 @@
                 scrollCarousel(-1);
             }
         });
+
+        // Handle touch events for mobile
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        window.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        });
+
+        window.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            if (touchStartY > touchEndY + 50) {
+                scrollCarousel(1); // Swipe up
+            } else if (touchStartY < touchEndY - 50) {
+                scrollCarousel(-1); // Swipe down
+            }
+        });
     </script>
 </body>
 </html>
-
