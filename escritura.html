@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frase</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: transparent; /* Fondo transparente */
+      color: #ba61d7; /* Color del texto negro */
+    }
+
+    .quote {
+      font-size: 2rem; /* Tamaño de fuente ajustable */
+      line-height: 1.6;
+      white-space: pre-line;
+      animation: fadeInText 1s ease-out;
+    }
+
+    @keyframes fadeInText {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .quote {
+        font-size: 1.5rem; /* Ajuste para pantallas más pequeñas */
+      }
+    }
+
+    @media (max-width: 576px) {
+      .quote {
+        font-size: 1.25rem; /* Ajuste para móviles */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="quote" id="quoteText"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const quotes = [
+        "La vida es demasiado corta para despertarse con remordimientos. Así que ama a las personas que te tratan bien, y olvida a las que no lo hacen. — Anónimo",
+        "No tienes que ser grande para comenzar, pero tienes que comenzar para ser grande. — Zig Ziglar"
+      ];
+
+      const getRandomQuote = () => quotes[Math.floor(Math.random() * quotes.length)];
+
+      const typeWriter = (text, i = 0) => {
+        if (i < text.length) {
+          document.getElementById('quoteText').textContent += text.charAt(i);
+          setTimeout(() => typeWriter(text, i + 1), 50);
+        }
+      };
+
+      const displayRandomQuote = () => {
+        const quote = getRandomQuote();
+        document.getElementById('quoteText').textContent = '';
+        setTimeout(() => typeWriter(quote), 500);
+      };
+
+      displayRandomQuote();
+    });
+  </script>
+</body>
+</html>
+
