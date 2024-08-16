@@ -7,137 +7,70 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
-        
         body {
             font-family: 'Orbitron', sans-serif;
             background: linear-gradient(130deg, #000428, #004e92);
             color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            display: flex;
+            margin: 0; display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            overflow: hidden;
         }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px #00f4ff, 0 0 20px #00f4ff, 0 0 30px #00f4ff, 0 0 40px #00f4ff;
-            }
-            to {
-                text-shadow: 0 0 20px #00f4ff, 0 0 30px #00f4ff, 0 0 40px #00f4ff, 0 0 50px #00f4ff;
-            }
-        }
-
         .carousel-wrapper {
-            position: relative;
             height: 80vh;
             width: 80%;
             margin-top: 5vh;
+            position: relative;
         }
-
         .carousel {
-            width: 100%;
             height: 100%;
             overflow: hidden;
-            position: relative;
             perspective: 1000px;
         }
-        
         .carousel-inner {
             height: 100%;
             display: flex;
             flex-direction: column;
             transition: transform 0.8s ease;
         }
-        
         .section {
             background: rgba(255, 255, 255, 0.2);
-            border: 1px solid #00f4ff;
             border-radius: 15px;
             padding: 2rem;
             margin: 1rem;
-            width: 100%;
-            height: 100%;
             text-align: center;
-            position: relative;
-            transition: transform 0.4s, box-shadow 0.4s, opacity 0.4s;
-            cursor: pointer;
-            opacity: 0.6;
-            transform: scale(0.9);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            transition: transform 0.4s, box-shadow 0.4s, opacity 0.4s;
+            opacity: 0.6;
+            transform: scale(0.9);
         }
-        
         .section.active {
             opacity: 1;
             transform: scale(1.1);
             box-shadow: 0 0 30px rgba(0, 244, 255, 0.7);
             z-index: 10;
         }
-        
         .section i {
             font-size: 3rem;
             margin-bottom: 1rem;
+            color: currentColor;
         }
-        
         .section h2 {
             margin: 0;
             font-size: 2rem;
-            word-wrap: break-word;
         }
-        
         .section p {
             font-size: 1rem;
-            word-wrap: break-word;
         }
-
-        /* Custom styles for each section */
-        .section:nth-child(1) {
-            background: linear-gradient(130deg, #34e89e, #0f3443);
-            border-color: #34e89e;
-        }
-        .section:nth-child(1) i {
-            color: #34e89e;
-        }
-
-        .section:nth-child(2) {
-            background: linear-gradient(130deg, #ff6a00, #ee0979);
-            border-color: #ff6a00;
-        }
-        .section:nth-child(2) i {
-            color: #ff6a00;
-        }
-
-        .section:nth-child(3) {
-            background: linear-gradient(130deg, #8e2de2, #4a00e0);
-            border-color: #8e2de2;
-        }
-        .section:nth-child(3) i {
-            color: #8e2de2;
-        }
-
-        .section:nth-child(4) {
-            background: linear-gradient(130deg, #56ab2f, #a8e063);
-            border-color: #56ab2f;
-        }
-        .section:nth-child(4) i {
-            color: #56ab2f;
-        }
-
-        .section:nth-child(5) {
-            background: linear-gradient(130deg, #ff416c, #ff4b2b);
-            border-color: #ff416c;
-        }
-        .section:nth-child(5) i {
-            color: #ff416c;
-        }
-
-        /* Dropdown Menu */
+        .section:nth-child(1) { background: linear-gradient(130deg, #34e89e, #0f3443); }
+        .section:nth-child(2) { background: linear-gradient(130deg, #ff6a00, #ee0979); }
+        .section:nth-child(3) { background: linear-gradient(130deg, #8e2de2, #4a00e0); }
+        .section:nth-child(4) { background: linear-gradient(130deg, #56ab2f, #a8e063); }
+        .section:nth-child(5) { background: linear-gradient(130deg, #ff416c, #ff4b2b); }
         .dropdown {
             display: none;
             flex-direction: column;
@@ -147,7 +80,6 @@
             padding: 1rem;
             width: 90%;
         }
-
         .dropdown a {
             color: #00f4ff;
             padding: 0.5rem;
@@ -155,79 +87,46 @@
             transition: background 0.3s;
             text-align: center;
         }
-
         .dropdown a:hover {
             background: rgba(0, 244, 255, 0.2);
             border-radius: 5px;
         }
-
-        /* Media Queries for Responsiveness */
         @media (max-width: 768px) {
-            .carousel-wrapper {
-                width: 95%;
-                height: 90vh;
-                margin-top: 5vh;
-            }
-            .section {
-                padding: 1rem;
-                width: 90%;
-                height: auto;
-            }
-            .section i {
-                font-size: 2.5rem;
-            }
-            .section h2 {
-                font-size: 1.5rem;
-            }
-            .section p {
-                font-size: 0.875rem;
-            }
+            .carousel-wrapper { width: 95%; height: 90vh; }
+            .section { padding: 1rem; }
+            .section i { font-size: 2.5rem; }
+            .section h2 { font-size: 1.5rem; }
+            .section p { font-size: 0.875rem; }
         }
-
         @media (max-width: 480px) {
-            .carousel-wrapper {
-                height: 95vh;
-                margin-top: 30vh;
-            }
-            .section {
-                padding: 0.5rem;
-                width: 100%;
-                height: auto;
-            }
-            .section i {
-                font-size: 2rem;
-            }
-            .section h2 {
-                font-size: 1.25rem;
-            }
-            .section p {
-                font-size: 0.75rem;
-            }
+            .carousel-wrapper { height: 95vh; margin-top: 30vh; }
+            .section { padding: 0.5rem; }
+            .section i { font-size: 2rem; }
+            .section h2 { font-size: 1.25rem; }
+            .section p { font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
     <div class="carousel-wrapper">
-        <iframe src="escritura.html" style="border:none; width:100%; min-height:40px;"></iframe>
-
+        <iframe src="pruebas.html" style="border:none; width:100%; min-height:40px;"></iframe>
         <div class="carousel" id="carousel">
             <div class="carousel-inner">
-                <div class="section" onclick="window.location.href='https://www.notion.so/2024-690f3e1a568346b8bc02f24c1fab38e0'">
+                <div class="section" onclick="location.href='https://www.notion.so/2024-690f3e1a568346b8bc02f24c1fab38e0'">
                     <i class="fas fa-dumbbell"></i>
                     <h2>Hábitos</h2>
                     <p>Gestiona y optimiza tus hábitos diarios.</p>
                 </div>
-                <div class="section" onclick="window.location.href='https://www.notion.so/sr-joe-d8629e87c6c24223859c09bb579bcc3a'">
+                <div class="section" onclick="location.href='https://www.notion.so/sr-joe-d8629e87c6c24223859c09bb579bcc3a'">
                     <i class="fas fa-user"></i>
                     <h2>Vida Personal</h2>
                     <p>Explora tu crecimiento personal y metas.</p>
                 </div>
-                <div class="section" onclick="window.location.href='https://www.notion.so/2023-b9ebd1d92b5c4f80836807f3bd6323c4'">
+                <div class="section" onclick="location.href='https://www.notion.so/2023-b9ebd1d92b5c4f80836807f3bd6323c4'">
                     <i class="fas fa-users"></i>
                     <h2>Familia</h2>
                     <p>Organiza tus responsabilidades familiares.</p>
                 </div>
-                <!-- Universidad Section with Dropdown -->
                 <div class="section" id="universidadSection">
                     <i class="fas fa-university"></i>
                     <h2>Universidad</h2>
@@ -247,85 +146,51 @@
     </div>
 
     <script>
-        const carouselInner = document.querySelector('.carousel-inner');
-        const sections = document.querySelectorAll('.section');
-        let currentIndex = 0;
-        let isScrolling = false;
-    
-        // Variables para detectar el deslizamiento táctil
-        let startY = 0;
-        let endY = 0;
-    
-        // Dropdown control
-        const universidadSection = document.getElementById('universidadSection');
-        const universidadDropdown = document.getElementById('universidadDropdown');
-    
-        universidadSection.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evitar que el clic en la sección se propague
+        const carouselInner = document.querySelector('.carousel-inner'),
+            sections = document.querySelectorAll('.section'),
+            universidadSection = document.getElementById('universidadSection'),
+            universidadDropdown = document.getElementById('universidadDropdown');
+        let currentIndex = 0, isScrolling = false, startY = 0;
+
+        universidadSection.addEventListener('click', function(e) {
+            e.stopPropagation();
             universidadDropdown.style.display = universidadDropdown.style.display === 'flex' ? 'none' : 'flex';
         });
-    
-        document.addEventListener('click', (e) => {
+
+        document.addEventListener('click', function(e) {
             if (!universidadSection.contains(e.target)) {
                 universidadDropdown.style.display = 'none';
             }
         });
-    
+
         function scrollCarousel(direction) {
             if (isScrolling) return;
             isScrolling = true;
-    
+
             const sectionHeight = sections[0].offsetHeight;
-            const maxIndex = sections.length - 1;
-            
-            currentIndex = Math.min(Math.max(currentIndex + direction, 0), maxIndex);
-            const newTransform = -currentIndex * sectionHeight;
-            carouselInner.style.transform = `translateY(${newTransform}px)`;
-    
+            currentIndex = Math.min(Math.max(currentIndex + direction, 0), sections.length - 1);
+            carouselInner.style.transform = `translateY(${-currentIndex * sectionHeight}px)`;
+
             updateActiveSection();
             
-            setTimeout(() => {
-                isScrolling = false;
-            }, 800);
+            setTimeout(() => isScrolling = false, 800);
         }
-    
+
         function updateActiveSection() {
             sections.forEach((section, index) => {
                 section.classList.toggle('active', index === currentIndex);
             });
         }
-    
-        // Initialize the first section as active
+
         updateActiveSection();
-    
-        // Handle mouse wheel scroll
-        window.addEventListener('wheel', (e) => {
-            if (e.deltaY > 0) {
-                scrollCarousel(1);
-            } else {
-                scrollCarousel(-1);
-            }
-        });
-    
-        // Handle touch events for mobile
-        window.addEventListener('touchstart', (e) => {
-            startY = e.touches[0].clientY;
-        });
-    
-        window.addEventListener('touchmove', (e) => {
-            endY = e.touches[0].clientY;
-        });
-    
-        window.addEventListener('touchend', () => {
-            const deltaY = endY - startY;
-    
-            if (deltaY > 50) { // Swipe down
-                scrollCarousel(-1);
-            } else if (deltaY < -50) { // Swipe up
-                scrollCarousel(1);
-            }
+
+        window.addEventListener('wheel', (e) => scrollCarousel(e.deltaY > 0 ? 1 : -1));
+
+        window.addEventListener('touchstart', (e) => startY = e.touches[0].clientY);
+        window.addEventListener('touchend', (e) => {
+            const deltaY = e.changedTouches[0].clientY - startY;
+            if (Math.abs(deltaY) > 50) scrollCarousel(deltaY > 0 ? -1 : 1);
         });
     </script>
-    
 </body>
 </html>
